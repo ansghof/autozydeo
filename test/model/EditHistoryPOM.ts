@@ -15,13 +15,15 @@ export default class EditHistoryPOM {
     }
 
     public async isLoggedIn(): Promise<boolean> {
-        return await this.page.locator('#loginLink',).count() == 0
+        return await this.page.locator('#loginLink').count() == 0
     }
 
     public async logIn(username: string, password: string) {
         await this.page.waitForSelector('.loginView');
         await this.page.fill('input[id="loginEmail"]', username);
         await this.page.fill('input[id="loginPassword"]', password);
+
+        await this.page.locator('.modalPopupButtonOK')?.click();
     }
 
     public async waitForPageLoaded() {
