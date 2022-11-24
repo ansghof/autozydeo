@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "cd test; playwright test"
+    "insert": "cd test; playwright test"
   },
   "devDependencies": {
     "@playwright/test": "^1.28.1",
