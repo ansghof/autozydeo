@@ -1,0 +1,20 @@
+{
+  "name": "autozydeo",
+  "version": "1.0.0",
+  "description": "Automatisierte handedict@zydeo Einträge machen",
+  "author": "Ansgar Hoffmann",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd test; playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.28.1",
+    "@types/node": "^18.11.9",
+    "@types/papaparse": "^5.3.5",
+    "@types/uuid": "^8.3.4",
+    "papaparse": "^5.3.2",
+    "sqlite3": "5.1.2",
+    "uuid": "9.0.0"
+  }
+}

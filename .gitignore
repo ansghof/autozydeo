@@ -1,0 +1,7 @@
+*.ods
+*.xslx
+*.xls
+entries.csv
+node_modules
+*.wav
+*.txt
