@@ -1,5 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import { pageLinkMaps } from '../utils/mappings';
+import EntryData from "./types";
 
 export default class EditHistoryPOM {
 
@@ -26,6 +27,38 @@ export default class EditHistoryPOM {
         await this.page.getByRole('textbox', { name: 'Passwort' }).click();
         await this.page.getByRole('textbox', { name: 'Passwort' }).fill(password);;
         await this.page.locator('span').filter({ hasText: 'OK' }).click();
+    }
+
+    public async createEntry(entry: EntryData) {
+        await this.enterSimplified(entry.simplified);
+        await this.acceptPinyin();
+        await this.enterTranslation(entry.german);
+        await this.enterComment(entry.comment ?? "neuer Eintrag");
+        await this.saveEntry();
+    }
+
+    public async enterSimplified(simplified: string) {
+        await this.page.locator('#newEntrySimp').fill(simplified);
+        await this.page.locator('#acceptSimp i').click();
+    }
+
+    public async acceptPinyin() {
+        await this.page.locator('#acceptPinyin i').click();
+    }
+
+    public async enterTranslation(german: string) {
+        await this.page.locator('#newEntryTrg').click();
+        await this.page.locator('#newEntryTrg').fill(german);
+        await this.page.locator('#acceptTrg i').click();
+    }
+
+    public async enterComment(comment: string) {
+        await this.page.getByPlaceholder('Source, comment, reference...').click();
+        await this.page.getByPlaceholder('Source, comment, reference...').fill(comment);
+    }
+
+    public async saveEntry() {
+        await this.page.getByText('Speichern').click();
     }
 
     public async waitForPageLoaded() {

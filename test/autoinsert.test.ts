@@ -35,6 +35,7 @@ async function insertEntry(browser: Browser, element: EntryData) {
     if (isLoggedIn) {
         await editHistoryPOM.login(credentials.username, credentials.password);
     }
+    await editHistoryPOM.createEntry(element);
     await new Promise(resolve => setTimeout(() => { }, 39999)).then(() => console.log("fired"));
 }
 
@@ -42,7 +43,6 @@ function readEntryFile(filename: string): string {
     let data = "";
     try {
         data = fs.readFileSync(filename, 'utf8')
-        console.log(data)
     } catch (err) {
         console.error(err)
     }
