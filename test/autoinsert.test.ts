@@ -36,7 +36,8 @@ async function insertEntry(browser: Browser, element: EntryData) {
         await editHistoryPOM.login(credentials.username, credentials.password);
     }
     await editHistoryPOM.createEntry(element);
-    await new Promise(resolve => setTimeout(() => { }, 39999)).then(() => console.log("fired"));
+    // pause for dramatic effect :)
+    await new Promise(resolve => setTimeout(() => { }, 2000)).then(() => console.log("fired"));
 }
 
 function readEntryFile(filename: string): string {
