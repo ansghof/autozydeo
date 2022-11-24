@@ -37,15 +37,14 @@ async function insertEntry(browser: Browser, element: EntryData) {
     }
     await editHistoryPOM.createEntry(element);
     // pause for dramatic effect :)
-    await new Promise(resolve => setTimeout(() => { }, 2000)).then(() => console.log("fired"));
+    // await new Promise(resolve => setTimeout(() => { }, 2000)).then(() => console.log("fired"));
 }
 
 function readEntryFile(filename: string): string {
-    let data = "";
     try {
-        data = fs.readFileSync(filename, 'utf8')
+        return fs.readFileSync(filename, 'utf8')
     } catch (err) {
         console.error(err)
     }
-    return data;
+    return "";
 }
