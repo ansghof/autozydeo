@@ -3,12 +3,12 @@ import Papa, { ParseResult } from 'papaparse';
 import fs from 'fs';
 import EntryData from './model/types'
 import EditHistoryPOM from './model/EditHistoryPOM';
-import credentials from './env.json';
+import credentials from '../env.json';
 
 test.only('Insert stuff', async () => {
     test.setTimeout(120000000);
 
-    let entryData: string = readEntryFile('entries.csv');
+    let entryData: string = readEntryFile('../entries.csv');
 
     const csvData: ParseResult<EntryData> = Papa.parse(entryData, { header: true, skipEmptyLines: true });
     console.table(csvData.data);
