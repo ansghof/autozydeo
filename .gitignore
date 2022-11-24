@@ -5,3 +5,6 @@ entries.csv
 node_modules
 *.wav
 *.txt
+env.json
+*.bak
+*.swp

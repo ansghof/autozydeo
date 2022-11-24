@@ -3,7 +3,7 @@ import Papa, { ParseResult } from 'papaparse';
 import fs from 'fs';
 import EntryData from './model/types'
 import EditHistoryPOM from './model/EditHistoryPOM';
-
+import credentials from './env.json';
 
 test.only('Insert stuff', async () => {
     test.setTimeout(120000000);
@@ -33,7 +33,7 @@ async function insertEntry(browser: Browser, element: EntryData) {
     await editHistoryPOM.chooseNewEntry();
     const isLoggedIn = await editHistoryPOM.isLoggedIn();
     if (isLoggedIn) {
-        await editHistoryPOM.login('asdfaffdsa', 'safdffadsads');
+        await editHistoryPOM.login(credentials.username, credentials.password);
     }
     await new Promise(resolve => setTimeout(() => { }, 39999)).then(() => console.log("fired"));
 }
