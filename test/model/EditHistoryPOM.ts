@@ -15,23 +15,25 @@ export default class EditHistoryPOM {
     }
 
     public async isLoggedIn(): Promise<boolean> {
-        return await this.page.locator('#loginLink').count() == 0
+        return await this.page.getByText('log in').count() == 0
     }
 
-    public async logIn(username: string, password: string) {
+    public async login(username: string, password: string) {
+        await this.page.getByText('log in').click();
         await this.page.waitForSelector('.loginView');
-        await this.page.fill('input[id="loginEmail"]', username);
-        await this.page.fill('input[id="loginPassword"]', password);
-
-        await this.page.locator('.modalPopupButtonOK')?.click();
+        await this.page.getByRole('textbox', { name: 'me@example.com' }).click();
+        await this.page.getByRole('textbox', { name: 'me@example.com' }).fill(username);
+        await this.page.getByRole('textbox', { name: 'Passwort' }).click();
+        await this.page.getByRole('textbox', { name: 'Passwort' }).fill(password);;
+        await this.page.locator('span').filter({ hasText: 'OK' }).click();
     }
 
     public async waitForPageLoaded() {
-        await this.page.waitForSelector('');
+        await this.page.waitForSelector('#smEditNew');
     }
 
     public async chooseNewEntry() {
-        await this.page.click('a:has-text("Neuer Eintrag")');
+        await this.page.getByRole('link', { name: 'Neuer Eintrag' }).click();
     }
 
 }

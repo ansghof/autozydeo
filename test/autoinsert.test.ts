@@ -31,8 +31,11 @@ async function insertEntry(browser: Browser, element: EntryData) {
     await editHistoryPOM.open();
     await editHistoryPOM.waitForPageLoaded();
     await editHistoryPOM.chooseNewEntry();
-
-
+    const isLoggedIn = await editHistoryPOM.isLoggedIn();
+    if (isLoggedIn) {
+        await editHistoryPOM.login('asdfaffdsa', 'safdffadsads');
+    }
+    await new Promise(resolve => setTimeout(() => { }, 39999)).then(() => console.log("fired"));
 }
 
 function readEntryFile(filename: string): string {
