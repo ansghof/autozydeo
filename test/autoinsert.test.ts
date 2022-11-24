@@ -2,7 +2,8 @@ import { chromium, Browser, BrowserContext, Page, test } from '@playwright/test'
 import Papa, { ParseResult } from 'papaparse';
 import fs from 'fs';
 import EntryData from './model/types'
-import nowTimestamp, { dateTimestamp, timeTimestamp } from './utils/timestamp'
+import EditHistoryPOM from './model/EditHistoryPOM';
+
 
 test.only('Insert stuff', async () => {
     test.setTimeout(120000000);
@@ -23,6 +24,15 @@ test.only('Insert stuff', async () => {
 });
 
 async function insertEntry(browser: Browser, element: EntryData) {
+    const context: BrowserContext = await browser.newContext();
+    let page: Page = await context.newPage();
+    const editHistoryPOM: EditHistoryPOM = new EditHistoryPOM(page);
+
+    await editHistoryPOM.open();
+    await editHistoryPOM.waitForPageLoaded();
+    await editHistoryPOM.chooseNewEntry();
+
+
 }
 
 function readEntryFile(filename: string): string {
