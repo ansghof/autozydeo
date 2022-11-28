@@ -42,6 +42,12 @@ export default class EditHistoryPOM {
         await this.page.locator('#acceptSimp i').click();
     }
 
+    public async enterTraditional(traditional: string) {
+        await this.page.locator('#editTrad i').click();
+        await this.page.locator('#newEntryTrad').fill(traditional);
+        await this.page.locator('#acceptSimp i').click();
+    }
+
     public async acceptPinyin() {
         await this.page.locator('#acceptPinyin i').click();
     }
